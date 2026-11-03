@@ -1,0 +1,521 @@
+1. A. ALP TO ADD TWO NUMBERS OF 16 BIT ADDITION
+AIM
+To write an assembly language program in 8086 to perform addition of two 16 bit numbers
+ALGORITHM:
+ 1. Load the first data in Ax Register
+ 2. Load the second data in BX register.
+ 3. Add the two data and store the sum in AX register.
+ 4. Store the sum in memory.
+ 5. Stop.
+ 
+PROGRAM:
+ORG 100H : Specifying the starting Address
+MOV AX, [1100 H] :Move 1100H to the Accumulator AX
+MOV BX, [1102H] : Move 1102H to the Accumulator BX 
+ADD AX, BX : Add the content present in the BX register to the Accumulator AX
+MOV [1200H], AX : Store the resultant value AX to the 1200H address location
+HLT : End the program
+RESULT:
+Thus the ALP to add two 16 bit numbers has been performed.
+B. 16-BIT SUBTRACTION
+AIM
+To write an assembly language program in 8086 to perform subtraction of two 16 bit numbers
+ALGORITHM:
+ 1. Load the first data in Ax Register
+ 2. Load the second data in BX register.
+ 3. Subtract the two data and store the sum in AX register.
+ 4. Store the sum in memory.
+ 5. Stop.
+PROGRAM
+ORG 100H : Specifying the starting Address
+MOV AX, [1100H] : Move 1100H to the Accumulator AX
+MOV BX, [1102H] : Move 1102H to the Accumulator BX
+SUB AX, BX : Subtract the content present in the BX register to the Accumulator AX
+MOV [1200H], AX : Store the resultant value AX to the 1200H address location
+HLT : End the program
+ RESULT:
+Thus the ALP to subtract two 16 bit numbers has been performed. 5
+C.16 BIT MULTIPLICATION
+AIM
+To write an assembly language program in 8086 to perform multiplication of two 16 bit 
+numbers
+ALGORITHM:
+ 1. Load the first data in Ax Register
+ 2. Load the second data in BX register.
+ 3. Multiply the two data and store the sum in AX register.
+ 4. Store the sum in memory.
+ 5. Stop.
+PROGRAM
+ORG 100H : Specifying the starting Address
+MOV AX, [1100H] :Move 1100H to the Accumulator AX
+MOV BX, [1102H] :Move 1102H to the Accumulator BX
+MUL BX : Multiply the content present in the BX register to the Accumulator AX
+MOV [1200H], AX : Store the resultant value AX to the 1200H address location
+MOV [1202H], DX : Store the resultant value DX to the 1200H address location
+HLT : End the program
+ RESULT:
+Thus the ALP to multiply two 16 bit numbers has been performed.
+D.16 BIT DIVISION
+AIM
+To write an assembly language program in 8086 to perform division of two 16 bit numbers
+ALGORITHM:
+ 1. Load the first data in Ax Register
+ 2. Load the second data in BX register.
+ 3. Divide the two data and store the sum in AX register.
+ 4. Store the sum in memory.
+ 5. Stop.
+PROGRAM
+ORG 100H :Specifying the starting Address
+MOV AX, [1100H] :Move 1100H to the Accumulator AX
+MOV BX, [1102H] :Move 1102H to the Accumulator BX
+DIV BX :Divide the content present in the BX register to the Accumulator AX
+MOV [1200H], AX : Store the resultant value AX to the 1200H address location
+MOV [1202H], DX : Store the resultant value AX to the 1200H address location
+HLT :End the program
+ RESULT:
+Thus the ALP to divide two 16 bit numbers has been performed. 6
+2A. LOGICAL AND OPERATION 
+ALGORITHM
+Step 1. Allocate some space for the result in data segment 
+step 2. In code segment, store accumulator with some value 
+step 3. Store B register with some value
+step 4. Perform AND operation on the register content with accumulator 
+step 5. Result is stored in accumulator
+step 6. The result is stored in required memory location
+SOURCE CODE
+Start: movAX,01H
+mov BX,01H 
+AND AX,BX
+End: HLT
+SAMPLE INPUTS & OUTPUTS
+Before Execution: After Execution:
+AX = 0001H AX = 0001H 
+BX = 0001H
+2B LOGICAL OR OPERATION 
+ALGORITHM
+Step 1. Allocate some space for the result in data segment 
+step 2. In code segment, store accumulator with some value 
+step 3. Store B register with some value
+step 4. Perform OR operation on register content with accumulator 
+step 5. Result is stored in accumulator
+step 6. The result is stored in required memory location.
+SOURCE CODE
+Start: movAX,01H 
+movBX, 00H
+OR AX,BX
+end: HLT
+SAMPLE INPUTS & OUTPUTS
+Before Execution: After Execution:
+AX = 0001H AX = 0001H 
+BX = 0000H 7
+3. LARGEST NUMBER IN DATA ARRAY
+AIM:
+To write an assembly language program in 8086 to find the largest of given number.
+ALGORITHM:
+Step 1: Load the source index with address pointer
+Step2: Load destination index with the memory location
+Step 3: Initialize the number of data to be given
+Step 4: Load the input data to the memory location
+Step 5: Compare the data with each other until the data gets sorted
+Step 6: Store the largest number in the memory location.
+Step 7: Halt the program.
+PROGRAM:
+MOV SI,1100H Set SI register as pointer for address pointer
+MOV DI,1200H Set DI register as pointer for memory
+MOV CL,[SI] Set CL as count for element in address pointer
+INC SI Increment the address pointer
+MOV AL,[SI] Set first data as Largest
+DEC CL Decrement the count
+L1: INC SI Make SI to point to next data in 
+MOV BL,[SI] Get the next data in BL register
+CMP AL,BL Compare current smallest data
+JNC L2 Jump if no carry move to loop L2
+MOV AL,BL If carry is set the move BL register to AL
+L2: DEC CL Decrement the count
+JNZ L1 If count is not zero repeat the loop L1
+MOV [DI],AL Store the Largest data in memory
+HLT Halt the program
+RESULT:
+Thus the ALP to to find the largest of given number has been performed. 8
+4.SMALLEST NUMBER IN DATA ARRAY
+AIM:
+To write an assembly language program in 8086 to find the smallest of given number.
+ALGORITHM:
+Step 1: Load the source index with address pointer
+Step2: Load destination index with the memory location
+Step 3: Initialize the number of data to be given
+Step 4: Load the input data to the memory location
+Step 5: Compare the data with each other until the data gets sorted
+Step 6: Store the smallest number in the memory location.
+Step 7: Halt the program.
+PROGRAM:
+MOV SI,1100H Set SI register as pointer for address pointer
+MOV DI,1200H Set DI register as pointer for memory
+MOV CL,[SI] Set CL as count for element in address pointer
+INC SI Increment the address pointer
+MOV AL,[SI] Set first data as smallest
+DEC CL Decrement the count
+L1: INC SI Make SI to point to next data in 
+MOV BL,[SI] Get the next data in BL register
+CMP AL,BL Compare current smallest data
+JC L2 Jump if carry move to loop L2
+MOV AL,BL If carry is set the move BL register to AL
+L2: DEC CL Decrement the count
+JNZ L1 If count is not zero repeat the loop L1
+MOV [DI],AL Store the smallest data in memory
+HLT Halt the program
+RESULT:
+Thus the ALP to to find the Smallest of given number has been performed 9
+5.ARRANGE THE GIVEN NUMBERS IN DESCENDING ORDER
+AIM:
+To write an assembly language program in 8086 to arrange the given numbers in descending order.
+ALGORITHM:
+Step 1: Load the input data to the memory location
+Step 2: Compare the data with each other until the data gets sorted
+Step 3: Arrange the numbers in Descending order
+Step 4: Halt the program
+PROGRAM:
+ORG 0100h
+MOV [3000H],25H
+MOV [3001H],15H
+MOV [3002H],45H
+MOV [3003H],35H
+MOV [3004H],55H
+MOV SI,3000H
+MOV DX,3001H
+MOV CH,04H
+L3: MOV CL, CH
+ MOV DI, DX
+L1: MOV AL, [SI]
+MOV BL, [DI]
+CMP AL, BL
+JNC L2
+ MOV [SI], BL
+ MOV [DI], AL
+L2: INC DI
+ DEC CL
+ JNZ L1
+ INC SI
+ INC DX
+ DEC CH
+ JNZ L3
+RET
+RESULT:
+Thus the ALP to arrange the given numbers in descending order has been performed. 10
+6. ARRANGE THE GIVEN NUMBERS IN ASCENDING ORDER
+AIM:
+To write an assembly language program in 8086 to arrange the given numbers in ascending order.
+ALGORITHM:
+Step 1: Load the input data to the memory location
+Step 2: Compare the data with each other until the data gets sorted
+Step 3: Arrange the numbers in ascending order
+Step 4: Halt the program
+PROGRAM:
+ORG 0100h
+MOV [3000H],25H
+MOV [3001H],15H
+MOV [3002H],45H
+MOV [3003H],35H
+MOV [3004H],55H
+MOV SI,3000H
+MOV DX,3001H
+MOV CH,04H
+L3: MOV CL, CH
+ MOV DI, DX
+L1: MOV AL, [SI]
+MOV BL, [DI]
+CMP AL, BL
+JC L2
+ MOV [SI], BL
+ MOV [DI], AL
+L2: INC DI
+ DEC CL
+ JNZ L1
+ INC SI
+ INC DX
+ DEC CH
+ JNZ L3
+RET
+RESULT:
+Thus the ALP to arrange the given numbers in ascending order has been performed 11
+7. SEARCHING A STRING
+OBJECTIVE
+To search the character in a string using 8086.
+ALGORITHM
+Step 1: Load the source index register with starting address.
+Step 2: Initialize the counter with the total number of characters.
+Step 3: Clear the direction flag for auto incrementing mode of transfer.
+Step 4: Use the string manipulation instruction SCASW to search a character from string. 
+Step 5: If a match is found (z=1), display the MSG1. Otherwise, display the MSG2.
+SOURCE CODE
+ASSUME CS: CODE, DS: DATA, ES:DATA 
+DATA SEGMENT
+MSG DB 'HELLO' 
+CNT EQU $-MSG 
+SRC EQU 'E'
+MSG1 DB 10,13,'CHARACTER FOUND$' 
+MSG2 DB 10,13,'CHARACTER NOT FOUND$'
+DATA ENDS 
+CODE SEGMENT 
+START:
+MOV AX, DATA 
+MOV DS, AX 
+MOV ES, AX 
+LEA SI, MSG 
+MOV AL, SRC 
+MOV CL, CNT 
+MOV CH, 00H 
+CLD
+UP: SCASB
+JZ DOWN 
+LOOP UP
+LEA DX, MSG2 
+MOV AH, 09H 
+INT 21H
+JMP EXIT 
+DOWN:
+LEA DX, MSG1 
+MOV AH, 09H 
+INT 21H
+EXIT:
+MOV AH, 4CH 
+INT 21H
+CODE ENDS
+END START 12
+OUTPUT :
+INPUT: HELLO SEARCH: E
+OUTPUT:
+CHARACTER FOUND
+RESULT
+Thus the program to search the character in a string was executed. 13
+ 8. FILLING OF DATA IN INTERNAL MEMORY
+AIM: To write an ALP to fill the data in the specified locations of Internal memory.
+ALGORITHM:
+1. Initialize R0 with the source address
+2. Initialize R1 with the counter
+3. The data to be filled is loaded in the accumulator.
+4. Move the data from the accumulator to the destination location.
+5. Decrement the counter and repeat step4 till R1 is zero
+6. Stop
+PROGRAM:
+ADDRESS MNEMONICS COMMENTS
+0000 MOV R0,#50H Load the destination address in R0
+0002 MOV R1,#0AH Load the count of data in R1
+0004 MOV A,#22H Load the data to be loaded in the destination location
+0006 L1: MOV @R0,A Move the accumulator contents to the destination location
+0007 INC R0 Increment R0
+0008 DJNZ R1,L1 Decrement R1 and jump to L1 if contents of R1 is not zero
+000A L2: SJMP L2 Stop
+OBSERVATION :
+INPUT OUTPUT
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+RESULT: Thus an ALP to fill the given data in the specified location of internal memory is performed. 14
+ 9. DATA TRANSFER BETWEEN INTERNAL MEMORIES
+AIM : To write an ALP to transfer data from one location of Internal memory to the other.
+ALGORITHM:
+1. Initialize R0 with the source address.
+2. Initialize R1 with the destination address.
+3. Initialize R3 with the counter.
+4. Move the data from source to the accumulator and then to the destination.
+5. Decrement the counter and repeat step4 till R3 is zero.
+6. Stop
+PROGRAM:
+ADDRESS MNEMONICS COMMENTS
+0000 MOV R0,#30H Load the source address 30 to R0
+0002 MOV R1,#50H Load the destination address 50 to R1
+0004 MOV R3,#0AH Load count(0AH) of data in R3
+0006 L1: MOV Move the first number from the source location to the accumulator
+0007 MOV @R1,A Move the first number from the accumulator to the destination location.
+0008 INC R0 Increment R0. Go to the next source address location
+0009 INC R1 Increment R1.Go to the next destination address location
+000A DJNZ R3,L1 Decrement R3 and jump to L1 if contents of R3 is not zero
+000C L2: SJMP L2 stop
+OBSERVATION :
+INPUT OUTPUT
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+RESULT: Thus an ALP to transfer data from one location of internal memory to the other is 
+performed. 15
+ 10. SEPERATING THE LOWER NIBBLE
+AIM: To write an ALP to perform the logical AND operation to separate the Lower Nibble.
+ALGORITHM:
+1. Initialize the registers R0, R1.
+2. Move the number of data in register R2.
+3. Move the content from R0 to Accumulator and perform logical AND with 0Fh.
+4. Move the result to R1 register.
+5. Increment R0 and R1 for the next data.
+6. Decrement the counter (R2) , if R2 ≠0,then repeat from step3.
+7. Stop the program.
+PROGRAM:
+ADDRESS MNEMONICS COMMENTS
+0000 MOV R0,#50H Move 50h to R0
+0002 MOV R1,#60H Move 60h to R1
+0004 MOV R2,#04H Move 04h(count) to R1
+0006 L1: MOV A,@R0 Move the content of R0 to accumulator
+0007 ANL A,#0FH Perform AND operation Between Accumulator and 0Fh
+0009 MOV @R1,A Move the accumulator content to location of R1
+000A INC R0 Increment R0
+000B INC R1 Increment R1
+000C DJNZ R2,L1 Decrement the value of R2 and jump to loop L1 if R2≠0
+000E L2: SJMP L2 Stop the Program
+OBSERVATION:
+Input Output
+Address Data Address Data
+50 60
+51 61
+52 62
+53 63
+RESULT: Thus the ALP to perform Logical AND instruction to separate the Lower Nibble was 
+executed and the output is verified. 16
+ 11. SEPERATING THE UPPER NIBBLE
+AIM: To write an ALP to perform the logical AND operation to separate the Upper Nibble.
+ALGORITHM:
+1. Initialize the registers R0, R1.
+2. Move the number of data in register R2.
+3. Move the content from R0 to Accumulator and perform logical AND with F0h.
+4. Swap the Upper and lower nibble of Accumulator.
+5. Move the result to R1 register.
+6. Increment R0 and R1 for the next data.
+7. Decrement the counter (R2) ,if R2 ≠0,then repeat from step3.
+8. Stop the program.
+PROGRAM:
+ADDRESS MNEMONICS COMMENTS
+0000 MOV R0,#50H Move 50h to R0
+0002 MOV R1,#60H Move 60h to R1
+0004 MOV R2,#04H Move 04h(count) to R1
+0006 L1: MOV A,@R0 Move the content of R0 to accumulator
+0007 ANL A,#0F0H Perform AND operation Between Accumulator and F0h
+0009 SWAP A Swap the accumulator content
+000A MOV @R1,A Move the accumulator content to location of R1
+000B INC R0 Increment R0
+000C INC R1 Increment R1
+000D DJNZ R2,L1 Decrement the value of R2 and jump to loop L1 if R2≠0
+000F L2: SJMP L2 Stop the Program
+OBSERVATION:
+Input Output
+Address Data Address Data
+50 60
+51 61
+52 62
+53 63
+RESULT: Thus the ALP to perform Logical AND instruction to separate the Upper Nibble was 
+executed and the output is verified. 17
+ 12. BIT MANIPULATION
+AIM:To write an ALP to identify if the given hexadecimal number is odd or even.
+ALGORITHM:
+1. Initialize R0 with the source address
+2. Move the contents of R0 to the accumulator
+3. Rotate accumulator right through carry.
+4. If the carry=1, the given number is odd, load the answer ”OD” in address location 51
+5. Else if the carry=0, the given number is even, load the answer ”OE” in address location 51
+6. Stop
+PROGRAM:
+ADDRESS MNEMONICS COMMENTS
+0000 MOV R0,#50H Load the source address in R0
+0002 MOV A,@R0 Load the contents of R0 to the accumulator
+0003 RRC A Rotate accumulator right through carry
+0004 JC L1 If carry=1,jumpto L1
+0006 MOV 51H,#0EH Store the answer “OE” in the destination location 51H
+0009 L2:SJMP L2 Stop
+000B L1: MOV 51H,#0DH If carry=0. Store the answer “OD” in the destination
+000E L3: SJMP L3 Stop
+OBSERVATION :
+INPUT OUTPUT
+50 51
+50 51
+RESULT: Thus an ALP to identify if the given hexa decimal number is odd or even is performed. 18
+ 13 BINARY TO GRAY CODE CONVERSION
+AIM:To write an ALP to convert the given binary code to gray code number.
+ALGORITHM:
+1.Initialize R0 with the source addresss
+2. Initialize R1 with the destination addresss
+3. Move the data from source to the accumulator.
+4. Clear the carry bit to zero and Rotate accumulator right through carry.
+5. XOR the contents of accumulator and the contents of R0
+6. Store the answer in R1
+7. Stop
+PROGRAM:
+ADDRESS MNEMONICS COMMENTS
+0000 MOV R0,#50H Load the source address to R0
+0002 MOV R1,#60H Load the destination address to R1
+0004 MOV A,@R0 Move the binary number into the accumulator
+0005 SETB C Set carry bit=1
+0006 CPL C Compliment carry bit
+0007 RRC A Rotate accumulator right through carry
+0008 XRL A,@R0 XOR the contents of accumulator and R0
+0009 MOV @R1,A Move the result from accumulator to destination address
+000A L1: SJMP L1 Stop
+OBSERVATION :
+INPUT OUTPUT
+50 60
+RESULT: Thus an ALP to convert the given binary code to gray code number is performed. 19
+ 14.BOOLEAN FUNCTION USING 8051
+AIM: To write an ALP to perform the given Boolean expression AB+C’
+ALGORITHM:
+1. Initialize the Register R0
+2. Move the content of R0 to Accumulator ( Represents A)
+3. Inctement the position of R0 and Perform AND operation
+Between the contents of Accumulator and R0 ( A AND B).
+4. Move the content of Accumulator to R1 register.
+5. Increment the position of R0 and move the content to Accumulator.
+6. Obtain the complement of Acc ( C’).
+7. Perform OR operation Between the content of Acc and R1 register.
+8. Store the result.
+9. Stop the program
+ PROGRAM:
+ADDRESS MNEMONICS COMMENTS
+0000 MOV Move 50h to R0
+0002 MOV A,@R0 Move the content of R0 to accumulator
+0003 INC R0 Increment R0
+0004 ANL A,@R0 Perform AND operation Between the content of Accumulator and R0
+0005 MOV R1,A Move the accumulator content to the register R1
+0006 INC R0 Increment R0
+0007 MOV A,@R0 Move the content of R0 to accumulator
+0008 CPL A Complement Accumulator
+0009 ORL A,R1 Accumulator ORed with R1
+000A MOV 60H,A Move the accumulator content to the location 60h
+000C L1: SJMP L1 Stop the Program
+OBSERVATION:
+Input Output
+Address Data Address Data
+50 60
+51
+52
+RESULT: Thus an ALP to perform the given Boolean expression AB+C’ was
