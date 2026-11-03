@@ -1,0 +1,384 @@
+1a. addition 
+ORG 100H 
+: Specifying the starting Address
+MOV AX, [1100 H] :Move 1100H to the Accumulator AX
+MOV BX, [1102H] 
+: Move 1102H to the Accumulator BX 
+ADD AX, BX 
+: Add the content present in the BX register to the Accumulator AX
+MOV [1200H], AX : Store the resultant value AX to the 1200H address location
+HLT : End the program
+
+
+
+1c.mul
+ORG 100H : Specifying the starting Address
+MOV AX, [1100H] :Move 1100H to the Accumulator AX
+MOV BX, [1102H] :Move 1102H to the Accumulator BX
+MUL BX : Multiply the content present in the BX register to the Accumulator AX
+MOV [1200H], AX : Store the resultant value AX to the 1200H address location
+MOV [1202H], DX : Store the resultant value DX to the 1200H address location
+HLT : End the program
+
+
+2. and 
+Start: movAX,01H
+mov BX,01H 
+AND AX,BX
+End: HLT
+SAMPLE INPUTS & OUTPUTS
+Before Execution: After Execution:
+AX = 0001H
+AX = 0001H 
+BX = 0001H
+
+
+
+
+
+3. largest number 
+MOV SI,1100H 
+Set SI register as pointer for address pointer
+MOV DI,1200H
+Set DI register as pointer for memory
+MOV CL,[SI]
+Set CL as count for element in address pointer
+INC SI
+Increment the address pointer
+MOV AL,[SI]
+Set first data as Largest
+DEC CL
+Decrement the count
+L1: INC SI
+Make SI to point to next data in 
+MOV BL,[SI]
+Get the next data in BL register
+CMP AL,BL
+Compare current smallest data
+JNC L2 Jump if no carry move to loop L2
+MOV AL,BL
+If carry is set the move BL register to AL
+L2: DEC CL
+Decrement the count
+JNZ L1
+If count is not zero repeat the loop L1
+MOV [DI],AL
+Store the Largest data in memory
+HLT
+Halt the program
+
+
+
+
+5. descending order 
+ORG 0100h
+MOV [3000H],25H
+MOV [3001H],15H
+MOV [3002H],45H
+MOV [3003H],35H
+MOV [3004H],55H
+MOV SI,3000H
+MOV DX,3001H
+MOV CH,04H
+L3:
+MOV CL, CH
+ 
+MOV DI, DX
+L1:
+MOV AL, [SI]
+MOV BL, [DI]
+CMP AL, BL
+JNC L2
+ MOV [SI], BL
+ MOV [DI], AL
+L2: INC DI
+ DEC CL
+ JNZ L1
+ INC SI
+ INC DX
+ DEC CH
+ JNZ L3
+RET
+
+
+7. search a string 
+
+SOURCE CODE
+ASSUME CS: CODE, DS: DATA, ES:DATA 
+DATA SEGMENT
+MSG DB
+'HELLO' 
+CNT EQU $-MSG 
+SRC EQU 'E'
+MSG1 DB
+10,13,'CHARACTER FOUND$' 
+MSG2 DB
+10,13,'CHARACTER NOT FOUND$'
+DATA ENDS 
+CODE SEGMENT 
+START:
+MOV AX, DATA 
+MOV DS, AX 
+MOV ES, AX 
+LEA SI, MSG 
+MOV AL, SRC 
+MOV CL, CNT 
+MOV CH, 00H 
+CLD
+UP: SCASB
+JZ
+DOWN 
+LOOP UP
+LEA DX, MSG2 
+MOV AH, 09H 
+INT
+21H
+JMP EXIT 
+DOWN:
+LEA DX, MSG1 
+MOV AH, 09H 
+INT
+21H
+EXIT:
+MOV AH, 4CH 
+INT
+21H
+CODE ENDS
+END START
+
+            
+
+
+
+8051
+
+
+
+
+
+
+8. filling of data in internal memory 
+
+
+ADDRESS MNEMONICS
+0000 MOV R0,#50H
+0002 MOV R1,#0AH
+0004 MOV A,#22H
+0006 L1: MOV @R0,A
+0007 INC R0
+0008 DJNZ R1,L1
+000A L2: SJMP L2
+Stop
+
+9. Data transfer between internal memory 
+
+0000
+MOV R0,#30H
+Load the source address 30 to R0
+0002
+MOV R1,#50H
+Load the destination address 50 to R1
+0004
+MOV R3,#0AH
+Load count(0AH) of data in R3
+0006
+L1: MOV
+Move the first number from the source location to the accumulator
+0007
+MOV @R1,A
+Move the first number from the accumulator to the destination location.
+0008
+INC R0
+Increment R0. Go to the next source address location
+0009
+INC R1
+Increment R1.Go to the next destination address location
+000A
+DJNZ R3,L1
+Decrement R3 and jump to L1 if contents of R3 is not zero
+000C
+L2: SJMP L2
+stop
+
+
+
+10.  seperating the lower nibble
+
+0000
+MOV R0,#50H
+Move 50h to R0
+0002
+MOV R1,#60H
+Move 60h to R1
+0004
+MOV R2,#04H
+Move 04h(count) to R1
+0006
+L1: MOV A,@R0 Move the content of R0 to accumulator
+0007
+ANL A,#0FH
+Perform AND operation Between Accumulator and 0Fh
+0009
+MOV @R1,A
+Move the accumulator content to location of R1
+000A
+INC R0
+Increment R0
+000B
+INC R1
+Increment R1
+000C
+DJNZ R2,L1
+Decrement the value of R2 and jump to loop L1 if R2≠0
+000E
+L2: SJMP L2
+Stop the Program
+
+
+55
+23
+41
+19
+
+
+
+11. separating the upper nibble 
+
+0000
+MOV R0,#50H
+Move 50h to R0
+0002
+MOV R1,#60H
+Move 60h to R1
+0004
+MOV R2,#04H
+Move 04h(count) to R1
+0006
+L1: MOV A,@R0
+Move the content of R0 to accumulator
+0007
+ANL A,#0F0H
+Perform AND operation Between Accumulator and F0h
+0009
+SWAP A
+Swap the accumulator content
+000A
+MOV @R1,A
+Move the accumulator content to location of R1
+000B
+INC R0
+Increment R0
+000C
+INC R1
+Increment R1
+000D
+DJNZ R2,L1
+Decrement the value of R2 and jump to loop L1 if R2≠0
+000F
+L2: SJMP L2
+
+
+
+12. Bit manipulation 
+ADDRESS
+MNEMONICS
+COMMENTS
+0000
+MOV R0,#50H
+Load the source address in R0
+0002
+MOV A,@R0
+Load the contents of R0 to the accumulator
+0003
+RRC A
+Rotate accumulator right through carry
+0004
+JC L1
+If carry=1,jumpto L1
+0006
+MOV 51H,#0EH
+Store the answer “OE” in the destination location 51H
+0009
+L2:SJMP L2
+Stop
+000B
+L1: MOV 51H,#0DH
+If carry=0. Store the answer “OD” in the destination
+000E
+L3: SJMP L3
+
+
+
+
+
+
+13.binary to greay 
+
+
+ADDRESS MNEMONICS
+COMMENTS
+0000
+MOV R0,#50H Load the source address to R0
+0002
+MOV R1,#60H Load the destination address to R1
+0004
+MOV A,@R0
+Move the binary number into the accumulator
+0005
+SETB C
+Set carry bit=1
+0006
+CPL C
+Compliment carry bit
+0007
+RRC A
+Rotate accumulator right through carry
+0008
+XRL A,@R0
+XOR the contents of accumulator and R0
+0009
+MOV @R1,A
+Move the result from accumulator to destination address
+000A
+L1: SJMP L1
+
+
+
+
+
+
+
+14. Boolean function using 8051
+
+0000
+MOV
+Move 50h to R0
+0002
+MOV A,@R0
+Move the content of R0 to accumulator
+0003
+INC R0
+Increment R0
+0004
+ANL A,@R0
+Perform AND operation Between the content of Accumulator and R0
+0005
+MOV R1,A
+Move the accumulator content to the register R1
+0006
+INC R0
+Increment R0
+0007
+MOV A,@R0
+Move the content of R0 to accumulator
+0008
+CPL A
+Complement Accumulator
+0009
+ORL A,R1
+Accumulator ORed with R1
+000A
+MOV 60H,A
+Move the accumulator content to the location 60h
+000C
+L1: SJMP L1
